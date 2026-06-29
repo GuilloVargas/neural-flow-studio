@@ -1,67 +1,69 @@
-<p align="center">
-  <img src="./docs/assets/neural-flow-studio-logo.svg" alt="Neural Flow Studio logo" width="720">
-</p>
+<div align="center">
+  <img src="docs/assets/neural-flow-studio-logo.svg" alt="Neural Flow Studio Logo" width="260" />
+  <h1>Neural Flow Studio</h1>
+  <p><b>Constructor visual de redes neuronales con TensorFlow.js y aceleracion Web</b></p>
 
-# Neural Flow Studio
+  <p>
+    <img src="https://img.shields.io/badge/Angular-v21-red?style=flat-square&logo=angular" alt="Angular" />
+    <img src="https://img.shields.io/badge/TypeScript-v5.9-blue?style=flat-square&logo=typescript" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/pnpm-v10%2B-orange?style=flat-square&logo=pnpm" alt="pnpm" />
+    <img src="https://img.shields.io/badge/TensorFlow.js-v4.22-ff6f00?style=flat-square&logo=tensorflow" alt="TensorFlow.js" />
+    <img src="https://img.shields.io/badge/WebGPU-WebGL%20%7C%20WASM%20%7C%20CPU-brightgreen?style=flat-square" alt="TensorFlow.js backends" />
+  </p>
+</div>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0.
+---
 
-## Project documentation
+**Neural Flow Studio** es una aplicacion web desarrollada con Angular y TensorFlow.js para disenar, conectar, validar, entrenar y exportar redes neuronales desde un canvas visual.
 
-La documentación funcional del proyecto está en [`docs/`](./docs/README.md).
+La app permite construir modelos por capas, configurar hiperparametros, cargar o generar datos de entrenamiento, revisar metricas en tiempo real y cambiar el backend de ejecucion entre WebGPU, WebGL, WASM y CPU segun la compatibilidad del navegador.
 
-## Development server
+---
 
-To start a local development server, run:
+## Documentacion
 
-```bash
-ng serve
-```
+La documentacion funcional del proyecto esta en [`docs/`](./docs/README.md):
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- [Guia de usuario](./docs/guia-usuario.md)
+- [Arquitectura](./docs/arquitectura.md)
+- [Entrenamiento y datos](./docs/entrenamiento-y-datos.md)
 
-## Code scaffolding
+## Requisitos
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Node.js 18+
+- pnpm 10+
+- Navegador moderno con soporte para WebGPU o WebGL
 
-```bash
-ng generate component component-name
-```
+## Desarrollo
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Instala dependencias:
 
 ```bash
-ng test
+pnpm install
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Inicia el servidor local:
 
 ```bash
-ng e2e
+pnpm start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Luego abre `http://localhost:4200/`.
 
-## Additional Resources
+## Build
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Compila la aplicacion:
+
+```bash
+pnpm build
+```
+
+Los artefactos quedan en `dist/`.
+
+## Tests
+
+Ejecuta las pruebas:
+
+```bash
+pnpm test
+```

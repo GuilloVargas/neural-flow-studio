@@ -408,10 +408,10 @@
             <span>
               <strong>{{ dataset.name }}</strong>
               <small>{{ dataset.description }}</small>
-              <small
-                >{{ dataset.source }} · {{ dataset.imageShape.join(' × ') }} ·
-                {{ dataset.outputClasses }} classes</small
-              >
+              <small>
+                {{ dataset.source }} · {{ dataset.inputShape.join(' × ') }} ·
+                {{ dataset.outputClasses }} output{{ dataset.outputClasses === 1 ? '' : 's' }}
+              </small>
             </span>
           </button>
         }

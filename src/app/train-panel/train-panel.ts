@@ -193,10 +193,16 @@ export class TrainPanelComponent {
     try {
       const loaded = await this.datasetService.loadDataset(dataset.id, this.datasetSamples());
       this.graphService.loadTemplate(loaded.definition.template);
+      this.applyDatasetGraphConfig(loaded.definition);
       this.trainingData.set(loaded.data);
       this.dataInput.set('');
       this.dataFormat.set('csv');
       this.loadedDatasetLabel.set(`${loaded.definition.name} (${loaded.data.x.length} samples)`);
+      this.config.update(config => ({
+        ...config,
+        loss: loaded.definition.loss,
+        metrics: loaded.definition.metrics,
+      }));
       const model = this.tfjsService.buildModelFromGraph();
       this.modelSummary.set(
         model
@@ -209,6 +215,27 @@ export class TrainPanelComponent {
       this.datasetError.set((e as Error).message);
     } finally {
       this.datasetLoading.set(false);
+    }
+  }
+
+  private applyDatasetGraphConfig(dataset: DatasetDefinition) {
+    const nodes = this.graphService.nodes();
+    const edges = this.graphService.edges();
+    const input = nodes.find(node => node.type === 'input');
+    const output = nodes.find(node =>
+      node.type === 'dense' && !edges.some(edge => edge.sourceNodeId === node.id),
+    );
+
+    if (input) {
+      this.graphService.updateNodeParams(input.id, { shape: dataset.inputShape });
+    }
+
+    if (output) {
+      this.graphService.updateNodeParams(output.id, {
+        units: dataset.outputClasses,
+        activation: dataset.outputActivation,
+        useBias: true,
+      });
     }
   }
 
